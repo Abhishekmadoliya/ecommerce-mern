@@ -34,47 +34,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/cartSlice";
 
-const products = [
-  {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
-  },
-];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
+
 
 export default function Header() {
-    const loginStatus = useSelector((state) => state.isLoggedin.username);
-  
-  const dispatch = useDispatch()
+  const loginStatus = useSelector((state) => state.isLoggedin.username);
+
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedin.value);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const [data,setData] = useState();
@@ -85,10 +50,10 @@ export default function Header() {
   //   }
   // console.log(data);
 
-  const handleLogout = ()=>{
-    dispatch(logout())
+  const handleLogout = () => {
+    dispatch(logout());
     localStorage.removeItem("token");
-  }
+  };
 
   return (
     <header className="bg-white">
@@ -178,24 +143,27 @@ export default function Header() {
             </>
           )}
           <div className=" flex gap-3">
-          {/* {loginStatus.username!="user"?<p>{loginStatus.username}</p>:""} */}
-          <p>{loginStatus.username || "User"}</p>
-          <img
-            class="w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
-            src={userProileImage}
-            alt="profile avatar"
-          />
+            {/* {loginStatus.username!="user"?<p>{loginStatus.username}</p>:""} */}
+            <p>{loginStatus.username || "User"}</p>
+            <img
+              class="w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
+              src={userProileImage}
+              alt="profile avatar"
+            />
           </div>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end hover:cursor-pointer">
-          
-          {isLoggedIn?<span
-            // onClick={() => Navigate("/")}
-            onClick={handleLogout}
-            className="text-sm/6 font-semibold text-gray-900"
-          >
-            Log out <span aria-hidden="true">&rarr;</span>
-          </span>:<p></p>}
+          {isLoggedIn ? (
+            <span
+              // onClick={() => Navigate("/")}
+              onClick={handleLogout}
+              className="text-sm/6 font-semibold text-gray-900"
+            >
+              Log out <span aria-hidden="true">&rarr;</span>
+            </span>
+          ) : (
+            <p></p>
+          )}
         </div>
       </nav>
       <Dialog
@@ -206,74 +174,75 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+            <Link to="/" className="-m-1.5 p-1.5">
               <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
+                alt="header-logo"
+                src={ecommerceLogo}
+                className="h-10 w-auto"
               />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon aria-hidden="true" className="size-6" />
+              <XMarkIcon className="size-6" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                    Product
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="size-5 flex-none group-data-open:rotate-180"
-                    />
-                  </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        {item.name}
-                      </DisclosureButton>
-                    ))}
-                  </DisclosurePanel>
-                </Disclosure>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+              <div className="space-y-4 py-6 flex flex-col">
+                <Link to="/" className="text-base font-semibold text-gray-900">
+                  Home
+                </Link>
+                <Link
+                  to="/contact"
+                  className="text-base font-semibold text-gray-900"
                 >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  Contact
+                </Link>
+                <Link
+                  to="/cart"
+                  className="text-base font-semibold text-gray-900"
                 >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Company
-                </a>
-              </div>
-              <div className="py-6">
-                <div
-                  
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  onClick={handleLogout}
-                >
-                  Log out
-                </div>
+                  Cart
+                </Link>
+
+                {!isLoggedIn ? (
+                  <>
+                    <Link
+                      to="/signup"
+                      className="text-base font-semibold text-gray-900"
+                    >
+                      Register
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="text-base font-semibold text-gray-900"
+                    >
+                      Login
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <img
+                        className="w-8 h-8 p-1 rounded-full ring-2 ring-gray-300"
+                        src={userProileImage}
+                        alt="user avatar"
+                      />
+                      <span className="text-sm text-gray-700">
+                        {loginStatus?.username || "User"}
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="text-left text-base font-semibold text-red-600"
+                    >
+                      Log out
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
