@@ -37,7 +37,7 @@ const Login = () => {
     const userdetail = { email: email, password: password };
 
     const response = await axios.post(
-      "https://ecommerce-mern-6fek.onrender.com/login",
+      "https://ecommerce-mern-6fek.onrender.com/user/login",
       userdetail
     );
     // const userres = response?.data?.status;
