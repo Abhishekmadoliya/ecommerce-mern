@@ -1,33 +1,10 @@
 const User = require("../models/user");
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
 
-const postUserData = async (req, res) => {
-  try {
-    const { username, email, contact, password } = req.body;
-    if (!username || !email || !contact || !password) {
-      return res.status(200).json({ message: "all feilds are required" ,status:401});
 
-    }
-    const saltval = 10;
-    const hashedPassword = await bcrypt.hash(password,saltval)
-    const newUser = new User({
-      username,
-      email,
-      contact,
-      password:hashedPassword
-    });
-
-    await newUser.save();
-
-    
-    return res.status(200).json({ message: "new user created" });
-} catch (e) {
-    return res.status(500).json({ message: "internal server error" });
-}
-};
 
 
 // const loginController = async(req,res)=>{
@@ -111,4 +88,4 @@ const userDeletion = async(req,res)=>{
 }
 
 // Export using exports object (CommonJS style)
-module.exports = { postUserData, getUser, updateUser,userDeletion};
+module.exports = {  getUser, updateUser,userDeletion};
