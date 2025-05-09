@@ -19,6 +19,33 @@ const [userdetail,setUserdetail] = useState({
 
   const onhadlesubmit = async()=>{
 
+
+    if(!userdetail.username || !userdetail.email || !userdetail.contact || !userdetail.password || !confirmpass){
+      // alert("all feilds are required")
+      toast.warning("all feilds are required")
+      return;
+    }
+
+    if(userdetail.password.length<8){
+      // alert("password must be of 8 character")
+      toast.warning("password must be of 8 character")
+      return;
+    }
+
+    if(userdetail.password !== confirmpass){
+      // alert("password and confirm password should be same")
+      toast.warning("password and confirm password should be same")
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!userdetail.email.match(emailRegex)) {
+      // alert("put write email");
+      toast.warning("put write email");
+      return;
+    }
+    // console.log(userdetail);
+
 try {
     const  response = await axios.post('https://ecommerce-mern-6fek.onrender.com/user/register',userdetail)
     console.log(response);
