@@ -1,0 +1,28 @@
+  {cart.map((item,index)=>(
+          <div className="flex gap-4  rounded-lg shadow-md p-2 bg-white w-full md:w-2/3" key={index}>
+        {/* Product Image */}
+        <div className="w-[150px] h-[150px] flex-shrink-0 bg-sky-800 rounded overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.image}
+            className="w-full h-full object-cover "
+          />
+        </div>
+
+        {/* Product Info */}
+        <div className="flex flex-col justify-between flex-grow">
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold text-gray-800">Cart Item</h2>
+            <p className="text-gray-700">Product: {item.title}</p>
+            <p className="text-gray-600">Price: ₹{item.price}</p>
+            <p className="text-sm text-green-700 bg-green-100 inline-block px-2 py-1 rounded">
+              {cart.stock}
+            </p>
+          </div>
+
+          <div className="mt-4 text-right text-lg font-semibold text-gray-800">
+            Total: ₹{item.price}
+          </div>
+        </div>
+      </div>
+       ))}
