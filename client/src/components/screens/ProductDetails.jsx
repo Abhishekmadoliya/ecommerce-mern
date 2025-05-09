@@ -21,7 +21,7 @@ const ProductDetails = () => {
 
   async function getProductById() {
     try{const res = await axios.get(
-      `http://localhost:5000/products/${id}`
+      `https://ecommerce-mern-6fek.onrender.com/products/${id}`
     );
 
     const data = res.data
