@@ -56,14 +56,12 @@ console.log(userres);
 console.log(message);
 
     if(userres==201){
-      // alert("succesfully registered")
       toast.success(message)
       navigate("/login")
       return;
     }
 
     if(userres==409 || userres===500 || userres===401){
-      // alert(message)
       toast.error(message)
       return;
     }
