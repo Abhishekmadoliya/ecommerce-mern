@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { toast, ToastContainer } from "react-toastify";
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -19,30 +20,37 @@ const [userdetail,setUserdetail] = useState({
   const onhadlesubmit = async()=>{
 
 try {
-    const  response = await axios.post('https://ecommerce-mern-6fek.onrender.com//user/register',userdetail)
+    const  response = await axios.post('https://ecommerce-mern-6fek.onrender.com/user/register',userdetail)
     console.log(response);
 
     const userres = response.data.status;
     const message = response.data.message;
 console.log(userres);
+console.log(message);
 
-    if(userres==200){
-      alert("succesfully registered")
+    if(userres==201){
+      // alert("succesfully registered")
+      toast.success(message)
       navigate("/login")
+      return;
     }
 
     if(userres==409 || userres===500 || userres===401){
-      alert(message)
+      // alert(message)
+      toast.error(message)
+      return;
     }
    
     
     
 } catch (error) {
     console.log(error);
+    toast.error("something went wrong")
+
     
 }
 
-console.log(userdetail);
+// console.log(userdetail);
 
 
   }
@@ -149,6 +157,7 @@ console.log(userdetail);
           </div>
         </form>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

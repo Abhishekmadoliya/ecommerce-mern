@@ -17,21 +17,22 @@ const Login = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email || !password) {
-      alert("email or passwaord cannot be empty");
+      // alert("email or passwaord cannot be empty");
       toast.warning("email or password cannot be empty");
 
       return;
     }
 
     if (!email.match(emailRegex)) {
-      alert("put write email");
+      // alert("put write email");
       toast.warning("put write email");
 
       return;
     }
 
     if (password.length < 8) {
-      alert("password must be of 8 character");
+      // alert("password must be of 8 character");
+      toast.warning("password must be of 8 character");
       return;
     }
     const userdetail = { email: email, password: password };
@@ -47,13 +48,13 @@ const Login = () => {
     const { status, message, token ,username} = response.data;
 
     if (status === 404) {
-      alert(message)
+      // alert(message)
 
       toast.error(message);
       return;
     }
     if (status === 401 || status === 500) {
-      alert(message)
+      // alert(message)
       toast.error(message);
       
       return;
@@ -61,7 +62,7 @@ const Login = () => {
     if (status === 200) {
       localStorage.setItem("token", token);
       Dispatch(login({username}));
-      alert(message)
+      // alert(message)
 
       toast.success(message);
       navigate("/");
