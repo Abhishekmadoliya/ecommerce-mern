@@ -19,7 +19,7 @@ const [userdetail,setUserdetail] = useState({
   const onhadlesubmit = async()=>{
 
 try {
-    const  response = await axios.post('http://localhost:5000/user/register',userdetail)
+    const  response = await axios.post('https://ecommerce-mern-6fek.onrender.com//user/register',userdetail)
     console.log(response);
 
     const userres = response.data.status;
