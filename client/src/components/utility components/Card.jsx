@@ -7,7 +7,7 @@ const Card = () => {
   const [products, setProducts] = useState([]);
 
   async function fetchProducts() {
-    const res = await axios.get("http://localhost:5000/products");
+    const res = await axios.get("https://ecommerce-mern-6fek.onrender.com/products");
     // const data = await res.json
 
     console.log(res);
