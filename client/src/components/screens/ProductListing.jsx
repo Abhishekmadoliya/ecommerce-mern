@@ -1,9 +1,11 @@
 // import React, { useState } from "react";
 import Header from "../utility components/Header";
-import Card from "../utility components/card";
+// import Card from "../utility components/card";
+
 import Footer from "../utility components/Footer";
 import { useSelector } from "react-redux";
 import { login } from "../../../redux/cartSlice";
+import Card from "../utility components/Card";
 
 
 const ProductListing = () => {
